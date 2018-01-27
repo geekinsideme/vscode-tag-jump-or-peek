@@ -1,0 +1,59 @@
+{
+    "name": "vscode-tag-jump-or-peek",
+    "displayName": "TAG Jump or Peek",
+    "description": "「ファイルパス:行:カラム」の形式の文字列からファイルを開く、あるいは覗きます(行、カラムは任意)",
+    "version": "0.0.1",
+    "publisher": "hakamypa",
+    "engines": {
+        "vscode": "^1.19.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "homepage": "https://github.com/hakamypa/vscode-tag-jump-or-peek",
+    "bugs": {
+        "url": "https://github.com/hakamypa/vscode-tag-jump-or-peek/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hakamypa/vscode-tag-jump-or-peek.git"
+    },
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [],
+        "configuration": {
+            "type": "object",
+            "title": "TAG Jump or Peek extension configuration",
+            "properties": {
+                "tag_jump_or_peek.fileSearchRegex": {
+                    "type": "array",
+                    "default": [
+                        "(([a-z]:)?([\\w!#$%&'()+\\-,.;=@\\[\\]^`{}~]+|/|\\|\\\\)+)",
+                        "[\"'(](([a-z]:)?([\\w!#$%&'()+\\-,.;=@\\[\\]^`{}~\\s]+|/|\\|\\\\)+)[\"')]",
+                        "(([a-z]:)?([\\w!#$%&'()+\\-,.;=@\\[\\]^`{}~\\s]+|/|\\|\\\\)+)"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "ファイルパスにマッチする正規表現を記述(\\は\\\\と記述が必要。また最初のキャプチャグループ()がファイルパスとなるように設定が必要)"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
